@@ -56,13 +56,16 @@ parser.add_argument('--test_folder', default='/data/', type=str, help='folder pa
 parser.add_argument('--refine', default=False, action='store_true', help='enable link refiner')
 parser.add_argument('--refiner_model', default='weights/craft_refiner_CTW1500.pth', type=str, help='pretrained refiner model')
 
+# self added argument:
+parser.add_argument('--results_folder', default="./result/", type=str, help='folder path to the output files')
+
 args = parser.parse_args()
 
 
 """ For test images in a folder """
 image_list, _, _ = file_utils.get_files(args.test_folder)
 
-result_folder = './result/'
+result_folder = args.results_folder  # default: './result/'
 if not os.path.isdir(result_folder):
     os.mkdir(result_folder)
 
